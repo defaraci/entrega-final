@@ -1,11 +1,14 @@
 import express from "express";
-const app = express()
+const app = express();
 
 
 app.get('/',(req, res) => {
     res.json({message: "Bienvenidos a la API REST"});
-})
+});
 
-const PORT = 3000
+import productsRouter from "./src/routes/products.routers.js";
+app.use("/api", productsRouter);
+
+const PORT = 3000;
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
