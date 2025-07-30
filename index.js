@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 const app = express();
 
+app.use(express.json());
 
 app.get('/',(req, res) => {
     res.json({message: "Bienvenidos a la API REST"});
@@ -9,6 +10,9 @@ app.get('/',(req, res) => {
 
 import productsRouter from "./src/routes/products.routers.js";
 app.use("/api", productsRouter);
+
+import authRouter from "./src/routes/auth.router.js";
+app.use("/api/auth",authRouter);
 
 const PORT = process.env.PORT || 3001;
 
