@@ -1,6 +1,6 @@
 import {db} from "./firebase.js";
 
-import {collection, getDocs, doc, getDoc, addDoc} from "firebase/firestore";
+import {collection, getDocs, doc, getDoc, addDoc, deleteDoc} from "firebase/firestore";
 
 const productsCollection = collection(db,"products");
 

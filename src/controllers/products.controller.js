@@ -43,3 +43,29 @@ export const createProduct = async (req, res) => {
 
     res.status(201).json(product);
 };
+
+export const deleteProduct = async (req, res) => {
+    const {id} = req.params;
+
+    const deleted = await Model.deleteProduct(id);
+
+    if (!deleted) {
+        return res.status(404).json({error: "Producto no encontrado"});
+    }
+
+    res.status(204).send();
+};
+
+export const getProductStats = (req, res) => {
+    const total = products.length;
+
+    const maxPrice = products.length > 0 ? Math.max(...products.map(p => p.price)) : 0;
+    const minPrice = products.length > 0 ? Math.min(...products.map(p => p.price)) : 0;
+
+    res.json({
+        total,
+        maxPrice,
+        minPrice,
+        promedio: total > 0 ? (products.reduce((sum, p) => sum + p.price, 0) / total).toFixed(2) : 0
+    });
+};
